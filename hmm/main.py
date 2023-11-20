@@ -1,8 +1,8 @@
 import os
 
-from .decoder import GreedyDecoding, ViterbiDecoding, calculate_accuracy
-from .adv_hmm import HMM
-from .utils import (
+from decoder import GreedyDecoding, ViterbiDecoding, calculate_accuracy
+from adv_hmm import HMM
+from utils import (
     WallStreetJournalDataset,
     WSJDatasetConfig,
     VocabConfig,
@@ -92,7 +92,7 @@ def train_and_evaluate():
     print("\nViterbi Decoding Accuracy: ", round(acc_v, 4))
 
     # Apply Greedy Decoding on Test data
-    predicted_test_tags_v = greedy_decoder.decode(test_sentences_with_pos_tags)
+    predicted_test_tags_v = viterbi_decoder.decode(test_sentences_with_pos_tags)
 
     df_viterbi_preds = unp_test_df.copy(deep=True)
     df_viterbi_preds["labels"] = predicted_test_tags_v

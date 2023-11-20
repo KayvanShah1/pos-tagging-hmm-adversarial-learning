@@ -10,7 +10,7 @@ from typing import List
 import numpy as np
 import pandas as pd
 
-from .utils import VocabConfig, HMMConfig
+from utils import VocabConfig, HMMConfig
 
 
 class HMM:

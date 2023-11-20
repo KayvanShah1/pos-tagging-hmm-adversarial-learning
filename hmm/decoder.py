@@ -1,6 +1,7 @@
 import numpy as np
+from tqdm import tqdm
 
-from .adv_hmm import VocabConfig
+from utils import VocabConfig
 
 
 class GreedyDecoding:
@@ -39,7 +40,7 @@ class GreedyDecoding:
     def decode(self, sentences):
         predicted_tags_list = []
 
-        for sentence in sentences:
+        for sentence in tqdm(sentences):
             predicted_tags = self._decode_single_sentence([word for word, tag in sentence])
             predicted_tags_list.append(predicted_tags)
 
@@ -104,7 +105,7 @@ class ViterbiDecoding:
     def decode(self, sentences):
         predicted_tags_list = []
 
-        for sentence in sentences:
+        for sentence in tqdm(sentences):
             predicted_tags = self._decode_single_sentence([word for word, tag in sentence])
             predicted_tags_list.append(predicted_tags)
 
@@ -125,7 +126,7 @@ def calculate_accuracy(predicted_sequences, true_sequences):
     total = 0
     correct = 0
 
-    for true_label, predicted_label in zip(true_sequences, predicted_sequences):
+    for true_label, predicted_label in tqdm(zip(true_sequences, predicted_sequences)):
         for true_tag, predicted_tag in zip(true_label, predicted_label):
             total += 1
             if true_tag == predicted_tag:
