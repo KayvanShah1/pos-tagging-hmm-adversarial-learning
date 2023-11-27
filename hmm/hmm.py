@@ -166,6 +166,9 @@ class AdversarialHMM(HMM):
         # Add perturbation to emission probabilities
         self.transitions += perturbation
 
+    def _perturb_controlled(self):
+        return
+
     def fit(self, train_data: pd.DataFrame):
         self._initialize_params()
         self._compute_prior_params(train_data)
