@@ -61,17 +61,17 @@ def train_and_evaluate():
     model.save_model()
 
     print("\nValidating on dev data and producing inference results for test data ...")
-    # Assuming you have the probability matrices and other data
+
     greedy_decoder = GreedyDecoding(p, t, e, model.states, model.vocab)
 
     # Apply Greedy Decoding on development data
     predicted_dev_tags = greedy_decoder.decode(valid_sentences_with_pos_tags)
 
-    # Apply Greedy Decoding on Test data
-    predicted_test_tags = greedy_decoder.decode(test_sentences_with_pos_tags)
-
     acc = calculate_accuracy(predicted_dev_tags, df_valid.labels.tolist())
     print("\nGreedy Decoding Accuracy: ", round(acc, 4))
+
+    # Apply Greedy Decoding on Test data
+    predicted_test_tags = greedy_decoder.decode(test_sentences_with_pos_tags)
 
     df_greedy_preds = unp_test_df.copy(deep=True)
     df_greedy_preds["labels"] = predicted_test_tags
@@ -82,7 +82,6 @@ def train_and_evaluate():
         f" {os.path.relpath(PathConfig.GREEDY_ALGO_OUTPUT_PATH)}"
     )
 
-    # Assuming you have the probability matrices and other data
     viterbi_decoder = ViterbiDecoding(p, t, e, model.states, model.vocab)
 
     # Apply Viterbi Decoding on development data
