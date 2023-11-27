@@ -1,24 +1,29 @@
 import os
 
+from datasets import VocabularyGenerator, WallStreetJournalDataset
 from decoder import GreedyDecoding, ViterbiDecoding, calculate_accuracy
+from utils import HMMConfig, PathConfig, VocabConfig, WSJDatasetConfig
+
 from hmm import HMM, AdversarialHMM
-from utils import WSJDatasetConfig, VocabConfig, PathConfig, HMMConfig
-from datasets import WallStreetJournalDataset, VocabularyGenerator
 
 
 def train_and_evaluate_hmm():
     # Prepare dataset
     print("\nReading and preparing data ...")
-    train_dataset = WallStreetJournalDataset(path=WSJDatasetConfig.train_file_path)
+    train_dataset = WallStreetJournalDataset(path=WSJDatasetConfig.train_file_path, split="train")
     df_train = train_dataset.prepare_dataset()
 
-    valid_dataset = WallStreetJournalDataset(path=WSJDatasetConfig.dev_file_path)
+    valid_dataset = WallStreetJournalDataset(
+        path=WSJDatasetConfig.dev_file_path, split="validation"
+    )
     df_valid = valid_dataset.prepare_dataset()
 
     # Unprocessed test dataset
-    unp_test_df = WallStreetJournalDataset(path=WSJDatasetConfig.test_file_path)._read_data()
+    unp_test_df = WallStreetJournalDataset(
+        path=WSJDatasetConfig.test_file_path, split="test"
+    )._read_data()
 
-    test_dataset = WallStreetJournalDataset(path=WSJDatasetConfig.test_file_path)
+    test_dataset = WallStreetJournalDataset(path=WSJDatasetConfig.test_file_path, split="test")
     test_dataset.prepare_dataset()
 
     # Generate vocabulary
