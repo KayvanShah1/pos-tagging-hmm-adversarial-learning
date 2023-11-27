@@ -19,7 +19,7 @@ class HMM:
 
         Args:
             vocab_file (str): Path to the vocab file
-            labels (List[str): List of tags
+            labels (List[str]): List of tags
         """
         self.vocab = self._read_vocab(vocab_file)
         self.labels = labels
