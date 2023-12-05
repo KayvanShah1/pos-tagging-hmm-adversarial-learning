@@ -23,6 +23,9 @@ The project focuses on:
 4. **Decoding:** Access decoding techniques via the `decoder.py` module.
 5. **Evaluation:** Evaluate performance metrics using the provided evaluation functions.
 
+> [!NOTE]
+> For every use case comment out the part not required in the `hmm.py` script and run the `main.py` script.
+
 ## Course Information
 
 - **Course:** DSCI 599 - Optimization Techniques for Data Science
@@ -30,15 +33,3 @@ The project focuses on:
 - **Project Title:** Part-of-Speech Tagging using Hidden Markov Models: Comparing decoding techniques and exploring adversarial training strategies
 
 This project was developed as the final project for the Optimization Techniques for Data Science course offered in Fall 2023.
-
-<!-- ## References
-
-- List of references and sources used for implementing HMMs, decoding techniques, and adversarial strategies.
-
-## Contributors
-
-- [@YourGitHubUsername](link to your GitHub) - Lead Developer
-
-## License
-
-This project is licensed under the [MIT License](link to license file). -->
