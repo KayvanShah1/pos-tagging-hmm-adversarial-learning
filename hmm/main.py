@@ -42,6 +42,7 @@ def train_and_evaluate_hmm():
     # Extract unique part-of-speech tags
     unique_pos_tags = df_train.labels.explode().unique()
     unique_pos_tags = unique_pos_tags.tolist()
+    print("Number of unique POS tags in training dataset:", len(unique_pos_tags))
 
     # Preprocess Data for training and evaluation
     train_sentences_with_pos_tags = train_dataset.get_sentences_with_pos_tags()
@@ -198,5 +199,5 @@ def train_and_evaluate_advs_hmm():
 
 
 if __name__ == "__main__":
-    # train_and_evaluate_hmm()
+    train_and_evaluate_hmm()
     train_and_evaluate_advs_hmm()
